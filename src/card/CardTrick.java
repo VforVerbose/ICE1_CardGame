@@ -35,7 +35,14 @@ public class CardTrick {
 
             magicHand[i] = c;
         }
+        
+        // Add a hard-coded lucky card. This was edited directly in github
+        Card luckyCard = new Card();
+        luckyCard.setValue(13);
+        luckyCard.setSuit("Spades");
+        magicHand[6] = luckyCard;
 
+        
         // search magicHand here
         System.out.println("Pick a card, any card!");
         System.out.print("Enter the card's number (1-13): ");
