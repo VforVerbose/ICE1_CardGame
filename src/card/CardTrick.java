@@ -9,24 +9,56 @@ package card;
  * and then asks the user to pick a card and searches the array of cards
  * for the match to the user's card. To be used as starting code in ICE 1
  * @author srinivsi
+ * @modifier Ali Alabdali (Student ID: 991711377) 09/23/2025
  */
+import java.util.Random;
+import java.util.Scanner;
+
 public class CardTrick {
-    
-    public static void main(String[] args)
-    {
+
+    public static void main(String[] args) {
+        //hand of 7 cards
         Card[] magicHand = new Card[7];
-        
-        for (int i=0; i<magicHand.length; i++)
-        {
+        Random random = new Random();
+        Scanner input = new Scanner(System.in);
+
+        // make random cards
+        for (int i = 0; i < magicHand.length; i++) {
+            //insert code to ask the user for Card value and suit, create their card
+             // and search magicHand here
+            int randomValue = random.nextInt(13) + 1;
+            int suitIndex = random.nextInt(Card.SUITS.length);
+
             Card c = new Card();
-            //c.setValue(insert call to random number generator here)
-            //c.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+            c.setValue(randomValue);
+            c.setSuit(Card.SUITS[suitIndex]);
+
+            magicHand[i] = c;
+        }
+
+        // search magicHand here
+        System.out.println("Pick a card, any card!");
+        System.out.print("Enter the card's number (1-13): ");
+        int userValue = input.nextInt();
+        input.nextLine();
+        System.out.print("Enter the card's suit (Hearts, Diamonds, Clubs, Spades): ");
+        String userSuit = input.nextLine();
+        
+       //Then report the result here
+        boolean found = false;
+        for (Card card : magicHand) {
+            if (card.getValue() == userValue && card.getSuit().equalsIgnoreCase(userSuit)) {
+                found = true; // card found here
+                break; 
+            }
+        }
+        //Then report the result here
+        if (found) {
+            System.out.println("Nice, Card is in magic hand");
+        } else {
+            System.out.println("Card isn't in magic hand");
         }
         
-        //insert code to ask the user for Card value and suit, create their card
-        // and search magicHand here
-        //Then report the result here
-        // add one luckcard hard code 2,clubs
+        input.close();
     }
-    
 }
